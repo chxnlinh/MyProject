@@ -17,7 +17,7 @@ public class NPC_Load : MonoBehaviour
         npc01.spawnerNPC(120, 5, 10, npcT01.position );
 
         NPC_spawner npc02 = new NPC_spawner();
-        npc02.spawnerNPC(200, 10, 20, npcT02.position);
+        npc02.spawnerNPC(160, 10, 20, npcT02.position);
 
 
     }

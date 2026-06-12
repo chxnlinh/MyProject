@@ -29,7 +29,7 @@ public class Boombing : MonoBehaviour
     {
         Instantiate(ExplosionFX, transform.position, transform.rotation);
         isExplosion = true; 
-        for (float r = 0.001f; r < boombHuntNum; r += 0.2f)
+        for (float r = 0.001f; r < explosionRadius; r += 0.2f)
             BoombCollider.radius = r;
         Destroy(gameObject, 1); 
     }

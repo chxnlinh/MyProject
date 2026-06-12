@@ -66,7 +66,7 @@ public class NPCctrl : MonoBehaviour
 
       
 
-        if(NPCplayerDistance < DetcDist)
+        if(NPCplayerDistance < DetcDist && NPC_HP > 0)
         {
             NPCnav.destination = Target.position;
 
@@ -85,10 +85,8 @@ public class NPCctrl : MonoBehaviour
             {
                 NPCani.SetBool("NPCpunch", false);
             }
-
-           
-
-            if (NPC_HP <= 0)
+        }
+        if (NPC_HP <= 0 && isReward)
             {
                 NPCani.SetTrigger("NPCdying");
 
@@ -101,7 +99,6 @@ public class NPCctrl : MonoBehaviour
                 Destroy(gameObject, 5); 
             }
 
-        }
         
     }
 
@@ -109,7 +106,7 @@ public class NPCctrl : MonoBehaviour
     {
         if(hit.gameObject.name == "PlayerSword" && NPC_HP >0 && _playerCtrl.PlayerAttking )
         {
-            NPC_HP -= 2;        
+            NPC_HP -= PlayerCtrl.Instance.SwordHuntNum;        
         }        
     }
 

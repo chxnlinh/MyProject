@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Bread
   m_EditorClassIdentifier: 
   itemName: Bread
-  icon: {fileID: 21300000, guid: f83c8c3ed9b90bc4cacfc01201387975, type: 3}
+  icon: {fileID: 21300000, guid: 095dc5e1d8aad4194b8ad57597f3dcd2, type: 3}
   skillPrefab: {fileID: 0}
   healAmount: 20

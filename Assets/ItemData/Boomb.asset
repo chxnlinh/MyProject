@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Boomb
   m_EditorClassIdentifier: 
   itemName: Boomb
-  icon: {fileID: 21300000, guid: f7827044917390d4e9cb883fa790c294, type: 3}
+  icon: {fileID: 21300000, guid: 7b4a41c853758403588e11285ff5b944, type: 3}
   skillPrefab: {fileID: 5870900150897426230, guid: f91d431b8faea4546b2e9a5cba1a6ae4, type: 3}
   healAmount: 0

@@ -36,6 +36,8 @@ public class PlayerCtrl : MonoBehaviour
 
     public static PlayerCtrl Instance;
 
+    public int SwordHuntNum = 40;
+
     private void Awake()
     {
         if(Instance == null)
@@ -71,21 +73,20 @@ public class PlayerCtrl : MonoBehaviour
         float RotateX = Input.GetAxis("Horizontal") + joyStick.Horizontal ;
         transform.Rotate(0,RotateX * Time.deltaTime * RoateSpeed , 0); 
 
-        // 檢查角色是否在地面上
+
         if (PlayerControl.isGrounded || isGrouded() )
         {
-            // 取得玩家輸入           
+     
             float moveZ = Input.GetAxis("Vertical") + joyStick.Vertical;
 
             speed = Input.GetKey(KeyCode.LeftShift) ? 4 : 2;          
 
             PlayerAniCtrl.SetFloat("WalkSpeed", Mathf.Abs( moveZ * speed) );
 
-           // 計算移動方向
             moveDirection = new Vector3(0f, 0f, moveZ * speed);
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= speed;
-            // 處理跳躍
+
             if (Input.GetButton("Jump"))
             {             
                 PlayerAniCtrl.SetTrigger("PlayerJump"); 
@@ -106,9 +107,8 @@ public class PlayerCtrl : MonoBehaviour
             PlayerAttking = PlayerAniCtrl.GetFloat("PlayerSwordAttkTiming") > 0.01f ? true : false;
             PlayerBoxing = PlayerAniCtrl.GetFloat("PlayerBoxingTiming") > 0.01f ? true : false;
         }
-        // 處理重力
+
         moveDirection.y -= gravity * Time.deltaTime;
-        // 移動角色
         PlayerControl.Move(moveDirection * Time.deltaTime);
         SwordTrailRender(); 
 
