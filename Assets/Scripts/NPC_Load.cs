@@ -6,23 +6,26 @@ public class NPC_Load : MonoBehaviour
 {
     int NPC_Total = 5;
 
-   public  Transform npcT01;
-   public  Transform npcT02; 
+    public Transform npcT01;
+    public Transform npcT02; 
         
-
     void Start()
     {
-        Vector3 pos = transform.position; 
-        NPC_spawner npc01 = new NPC_spawner();
-        npc01.spawnerNPC(120, 5, 10, npcT01.position );
+        // 補上防呆機制：確保你已經在 Unity 面板裡拖曳了生成點物件
+        if (npcT01 != null && npcT02 != null) 
+        {
+            NPC_spawner npc01 = new NPC_spawner();
+            npc01.spawnerNPC(120, 5, 10, npcT01.position);
 
-        NPC_spawner npc02 = new NPC_spawner();
-        npc02.spawnerNPC(160, 10, 20, npcT02.position);
-
-
+            NPC_spawner npc02 = new NPC_spawner();
+            npc02.spawnerNPC(160, 10, 20, npcT02.position);
+        }
+        else
+        {
+            Debug.LogWarning("【提醒】請記得在 Inspector 面板把 npcT01 跟 npcT02 拖曳進去喔！");
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         /*
@@ -34,22 +37,25 @@ public class NPC_Load : MonoBehaviour
             NPC_Total--; 
         }
         */
-        
     }
 }
 
-
-
-
-public class NPC_spawner: MonoBehaviour
+// ====================================================
+// 🔴 關鍵修正 1：把後面的 ": MonoBehaviour" 刪掉，讓它變成普通類別
+// ====================================================
+public class NPC_spawner
 {
     public void spawnerNPC(int hp, int DeteDist, int attkPower, Vector3 pos)
     {
-        GameObject NPC = Instantiate(Resources.Load("NPC", typeof(GameObject))) as GameObject;
+        // 🔴 關鍵修正 2：因為移除了 MonoBehaviour，呼叫 Instantiate 前面必須加上 GameObject.
+        GameObject NPC = GameObject.Instantiate(Resources.Load("NPC", typeof(GameObject))) as GameObject;
         NPC.transform.position = pos;
+        
         NPCctrl npcCtrl = NPC.GetComponent<NPCctrl>();
-        npcCtrl.NPC_maxHP = hp;
-        npcCtrl.DetcDist = DeteDist; 
+        if (npcCtrl != null)
+        {
+            npcCtrl.NPC_maxHP = hp;
+            npcCtrl.DetcDist = DeteDist; 
+        }
     }
-
 }

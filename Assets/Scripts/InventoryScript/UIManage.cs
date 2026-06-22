@@ -42,11 +42,6 @@ public class UIManage : MonoBehaviour
 
         }
 
-
-
-
-
-
     }
 
 }
