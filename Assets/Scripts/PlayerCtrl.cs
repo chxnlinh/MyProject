@@ -39,6 +39,7 @@ public class PlayerCtrl : MonoBehaviour
     public bool isSpeedBoosted = false;
 
     public AudioSource swordAudio;
+    public AudioSource boxingAudio;
 
     private void Awake()
     {
@@ -53,7 +54,7 @@ public class PlayerCtrl : MonoBehaviour
         PlayerControl = GetComponent<CharacterController>();
         PlayerAniCtrl = GetComponent<Animator>();
 
-        GameObject PlayerHPbar = GameObject.Find("PlyaerHP");
+        GameObject PlayerHPbar = GameObject.Find("PlayerHP");
         PlayerHPbarImg = PlayerHPbar.GetComponent<Image>();
 
         PlayerSowrd.SetActive(false);
@@ -96,7 +97,7 @@ public class PlayerCtrl : MonoBehaviour
 
             if (Input.GetKeyUp(KeyCode.B) )
             {
-                PlayerAniCtrl.SetTrigger("PlayerBoxing");
+                BoxingPressDown();
             }
 
             if((Input.GetKeyDown(KeyCode.T) || VirButSword) && PlayerSwordEnable )
@@ -164,6 +165,15 @@ public class PlayerCtrl : MonoBehaviour
     public void SwordAttPressUp()
     {
         VirButSword = false;
+    }
+
+    public void BoxingPressDown()
+    {
+        PlayerAniCtrl.SetTrigger("PlayerBoxing");
+        if (boxingAudio != null)
+        {
+            boxingAudio.Play();
+        }
     }
 
     public void Heal(int amount)
