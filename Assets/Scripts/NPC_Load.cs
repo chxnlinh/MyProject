@@ -11,7 +11,6 @@ public class NPC_Load : MonoBehaviour
         
     void Start()
     {
-        // 補上防呆機制：確保你已經在 Unity 面板裡拖曳了生成點物件
         if (npcT01 != null && npcT02 != null) 
         {
             NPC_spawner npc01 = new NPC_spawner();
@@ -28,26 +27,13 @@ public class NPC_Load : MonoBehaviour
 
     void Update()
     {
-        /*
-        float number = Random.Range(0, 2000f);
-        if(NPC_Total > 0 && number < 1)
-        {
-            GameObject NPC = Instantiate( Resources.Load("NPC", typeof(GameObject))) as GameObject;
-            NPC.transform.position = transform.position  + new Vector3( Random.Range(-2f, 2), 0, Random.Range(-2f, 2));
-            NPC_Total--; 
-        }
-        */
     }
 }
 
-// ====================================================
-// 🔴 關鍵修正 1：把後面的 ": MonoBehaviour" 刪掉，讓它變成普通類別
-// ====================================================
 public class NPC_spawner
 {
     public void spawnerNPC(int hp, int DeteDist, int attkPower, Vector3 pos)
     {
-        // 🔴 關鍵修正 2：因為移除了 MonoBehaviour，呼叫 Instantiate 前面必須加上 GameObject.
         GameObject NPC = GameObject.Instantiate(Resources.Load("NPC", typeof(GameObject))) as GameObject;
         NPC.transform.position = pos;
         
